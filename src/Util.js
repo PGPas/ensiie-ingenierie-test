@@ -10,8 +10,8 @@ Util.factorial = function(n) {
 	if(n === 0) return 1;
 	return n * Util.factorial(n - 1);
 	**/
-	var res = 1;
-	for (var i = n; i >= 0; i--) {
+	let res = 1;
+	for (let i = n; i >= 0; i--) {
 		if(i != 0) {
 			res *= i;
 		} 
@@ -38,7 +38,8 @@ Util.arrangement = function(n, r) {
  * @returns {number}
  */
 Util.combination = function(n, r) {
-
+	if (r > n) { return 0; }
+	return Util.factorial(n) / (Util.factorial(n - r) * Util.factorial(r));
 };
 
 /**
