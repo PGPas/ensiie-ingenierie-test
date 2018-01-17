@@ -1,4 +1,4 @@
-/*describe("Interval - overlapping", function () {
+describe("Interval - overlapping", function () {
     testedInterval = new Interval(10, 20);
 
     [
@@ -23,4 +23,4 @@
             expect(testedInterval.overlaps(interval)).toBeFalsy();
         });
     });
-});*/
+});
