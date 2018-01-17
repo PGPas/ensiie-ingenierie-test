@@ -87,35 +87,3 @@ describe("Combinations : ", function() {
   });
 
 });
-
-/*describe("Is prime : ", function() {
-  var normalCases = [
-  	{
-  		n: 1,
-  		result: false
-  	},
-  	{
-  		n: 2,
-  		result: true
-  	},
-  	{
-  		n: 3,
-  		result: true
-  	},
-    {
-      n: 4,
-      result: false
-    },
-    {
-      n: 5,
-      result: true
-    }
-  ];
-
-  normalCases.forEach(function(cas) {
-  	it('No. of combinations de ' + cas.r + ' parmi ' + cas.n + " = " + cas.result, function() {
-  		expect(Util.combination(cas.n, cas.r)).toBe(cas.result);
-  	});
-  });*/
-
-});
