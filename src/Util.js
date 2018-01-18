@@ -6,10 +6,7 @@ Util = {};
  * @returns {number}
  */
 Util.factorial = function(n) {
-	/** With recursion
-	if(n === 0) return 1;
-	return n * Util.factorial(n - 1);
-	**/
+	if(n !== parseInt(n, 10) || n < 0) throw 'Input is not natural integer';
 	let res = 1;
 	for (let i = n; i >= 0; i--) {
 		if(i != 0) {
@@ -27,6 +24,7 @@ Util.factorial = function(n) {
  * @returns {number}
  */
 Util.arrangement = function(n, r) {
+	if(r > n) throw 'r (' + r + ') is greater than n (' + n + ')';
 	return Util.factorial(n) / Util.factorial(n - r);
 };
 

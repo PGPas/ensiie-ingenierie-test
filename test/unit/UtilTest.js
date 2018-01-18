@@ -1,37 +1,49 @@
 describe("Factorial : ", function() {
-  var cases = [
-  	{
-  		n: 0,
-  		factorial: 1
-  	},
-  	{
-  		n: 1,
-  		factorial: 1
-  	},
-  	{
-  		n: 2,
-  		factorial: 2
-  	},
-  	{
-  		n: 3,
-  		factorial: 6
-  	},
-  	{
-  		n: 4,
-  		factorial: 24
-  	}
-  ];
+  [
+    {
+      n: 0,
+      factorial: 1
+    },
+    {
+      n: 1,
+      factorial: 1
+    },
+    {
+      n: 2,
+      factorial: 2
+    },
+    {
+      n: 3,
+      factorial: 6
+    },
+    {
+      n: 4,
+      factorial: 24
+    }
+  ].forEach(function(cas) {
+    it(cas.n + '! = ' + cas.factorial, function() {
+      expect(Util.factorial(cas.n)).toBe(cas.factorial);
+    });
+  });
 
-  cases.forEach(function(cas) {
-  	it(cas.n + '! = ' + cas.factorial, function() {
-  		expect(Util.factorial(cas.n)).toBe(cas.factorial);
-  	});
+  [
+    -5,
+    '5',
+    '-6',
+    5.20
+  ].forEach(function(cas) {
+    it('Non natural integer', function() {
+        var toThrow = () => {
+          Util.factorial(cas);
+        };
+        expect(toThrow).toThrow('Input is not natural integer');
+    });
   });
 
 });
 
 describe("Arrangements : ", function() {
-  var normalCases = [
+  [
     {
       r: 2,
       n: 3,
@@ -47,11 +59,7 @@ describe("Arrangements : ", function() {
       n: 3,
       result: 6
     }
-
-
-  ];
-
-  normalCases.forEach(function(cas) {
+  ].forEach(function(cas) {
     it('No. of arrangements de ' + cas.r + ' parmi ' + cas.n + " = " + cas.result, function() {
       expect(Util.arrangement(cas.n, cas.r)).toBe(cas.result);
     });
