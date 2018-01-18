@@ -25,6 +25,7 @@ Util.factorial = function(n) {
  */
 Util.arrangement = function(n, r) {
 	if(r !== parseInt(r, 10) || r < 0) throw 'Input r is not natural integer';
+	if(n !== parseInt(n, 10) || n < 0) throw 'Input n is not natural integer';
 	if(r > n) return 0;
 	return Util.factorial(n) / Util.factorial(n - r);
 };
@@ -37,6 +38,8 @@ Util.arrangement = function(n, r) {
  * @returns {number}
  */
 Util.combination = function(n, r) {
+	if(r !== parseInt(r, 10) || r < 0) throw 'Input r is not natural integer';
+	if(n !== parseInt(n, 10) || n < 0) throw 'Input n is not natural integer';
 	if (r > n) return 0;
 	return Util.factorial(n) / (Util.factorial(n - r) * Util.factorial(r));
 };
