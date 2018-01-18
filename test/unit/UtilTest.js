@@ -1,4 +1,5 @@
 describe("Factorial : ", function() {
+  // Normal
   [
     {
       n: 0,
@@ -26,6 +27,7 @@ describe("Factorial : ", function() {
     });
   });
 
+  // Invalid input
   [
     -5,
     '5',
@@ -43,6 +45,7 @@ describe("Factorial : ", function() {
 });
 
 describe("Arrangements : ", function() {
+  // Normal
   [
     {
       r: 2,
@@ -55,13 +58,76 @@ describe("Arrangements : ", function() {
       result: 120
     },
     {
-      r: 6,
-      n: 3,
-      result: 6
+      r: 4,
+      n: 6,
+      result: 360
+    },
+    // Same r than n
+    {
+      r: 4,
+      n: 4,
+      result: 24
+    },
+    {
+      r: 0,
+      n: 0,
+      result: 1
+    },
+    {
+      r: 2,
+      n: 2,
+      result: 2
     }
   ].forEach(function(cas) {
-    it('No. of arrangements de ' + cas.r + ' parmi ' + cas.n + " = " + cas.result, function() {
+    it('No. of arrangements de ' + cas.r + ' from ' + cas.n + " = " + cas.result, function() {
       expect(Util.arrangement(cas.n, cas.r)).toBe(cas.result);
+    });
+  });
+
+  // r > n cases
+  [
+    {
+      r: 3,
+      n: 2,
+      result : 0
+    },
+    {
+      r: 6,
+      n: 3,
+      result : 0
+    },
+    {
+      r: 6,
+      n: 4,
+      result : 0
+    }
+  ].forEach(function(cas) {
+    it('No. of arrangements de ' + cas.r + ' from ' + cas.n + " = " + cas.result, function() {
+      expect(Util.arrangement(cas.n, cas.r)).toBe(cas.result);
+    });
+  });
+
+
+  // r > n cases
+  [
+    {
+      r: '3',
+      n: 2,
+    },
+    {
+      r: 6.33,
+      n: 3,
+    },
+    {
+      r: -6,
+      n: 4,
+    }
+  ].forEach(function(cas) {
+    it('r is not natural integer', function() {
+        var toThrow = () => {
+          Util.arrangement(cas.n, cas.r);
+        };
+        expect(toThrow).toThrow('Input r is not natural integer');
     });
   });
 
@@ -89,7 +155,7 @@ describe("Combinations : ", function() {
   ];
 
   normalCases.forEach(function(cas) {
-    it('No. of combinations de ' + cas.r + ' parmi ' + cas.n + " = " + cas.result, function() {
+    it('No. of combinations de ' + cas.r + ' from ' + cas.n + " = " + cas.result, function() {
       expect(Util.combination(cas.n, cas.r)).toBe(cas.result);
     });
   });
