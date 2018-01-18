@@ -6,10 +6,7 @@ Util = {};
  * @returns {number}
  */
 Util.factorial = function(n) {
-	/** With recursion
-	if(n === 0) return 1;
-	return n * Util.factorial(n - 1);
-	**/
+	if(n !== parseInt(n, 10) || n < 0) throw 'Input is not natural integer';
 	let res = 1;
 	for (let i = n; i >= 0; i--) {
 		if(i != 0) {
@@ -27,6 +24,9 @@ Util.factorial = function(n) {
  * @returns {number}
  */
 Util.arrangement = function(n, r) {
+	if(r !== parseInt(r, 10) || r < 0) throw 'Input r is not natural integer';
+	if(n !== parseInt(n, 10) || n < 0) throw 'Input n is not natural integer';
+	if(r > n) return 0;
 	return Util.factorial(n) / Util.factorial(n - r);
 };
 
@@ -38,7 +38,9 @@ Util.arrangement = function(n, r) {
  * @returns {number}
  */
 Util.combination = function(n, r) {
-	if (r > n) { return 0; }
+	if(r !== parseInt(r, 10) || r < 0) throw 'Input r is not natural integer';
+	if(n !== parseInt(n, 10) || n < 0) throw 'Input n is not natural integer';
+	if (r > n) return 0;
 	return Util.factorial(n) / (Util.factorial(n - r) * Util.factorial(r));
 };
 
