@@ -32,6 +32,13 @@ Interval.prototype.includes = function (interval) {
  * @returns {Interval[]}
  */
 Interval.prototype.union = function (interval) {
+	let res = [this, interval];
+	if (this.overlaps(interval)) {
+		let start = undefined;
+		let end = undefined;
+
+		res.push(new Interval(start, end));
+	}
 
 };
 
