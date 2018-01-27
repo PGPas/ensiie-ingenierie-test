@@ -52,7 +52,7 @@ describe("Interval - including", function () {
     });
 });
 
-/*describe("Interval - union", function () {
+describe("Interval - union", function () {
     [
         {
             a: new Interval(1, 10),
@@ -67,12 +67,17 @@ describe("Interval - including", function () {
         {
             a: new Interval(10, 20),
             b: new Interval(7, 10),
-            union: [ new Interval(7, 10), new Interval(10, 20), new Interval(10, 10) ]
+            union: [ new Interval(7, 20) ]
         },
         {
             a: new Interval(1, 15),
             b: new Interval(10, 20),
-            union: [ new Interval(1, 15), new Interval(10, 20), new Interval(10, 15) ]
+            union: [ new Interval(1, 20) ]
+        },
+        {
+            a: new Interval(10, 20),
+            b: new Interval(20, 21),
+            union: [ new Interval(10, 21) ]
         }
 
     ].forEach(function (testCase) {
@@ -81,10 +86,12 @@ describe("Interval - including", function () {
 
         it(testCaseDescription, function () {
             let res = testCase.a.union(testCase.b);
-            let expectedString = ""; testCase.union.forEach(interval => expectedString += interval.toString());
+            console.log(res);
+            let expectedString = ""; 
+            testCase.union.forEach(interval => expectedString += interval.toString());
 
             res.forEach(interval => expect(expectedString).toContain(interval.toString()));
         });
     });
 });
-*/
+
