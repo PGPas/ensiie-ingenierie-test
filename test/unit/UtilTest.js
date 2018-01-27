@@ -346,12 +346,11 @@ describe("sumPrime : ", function() {
     { n: 6, result: 10 },
     { n: 8, result: 17 },
     { n: 11, result: 28 },
-    { n: 13, result: 31 },
-    { n: 17, result: 48 }
+    { n: 13, result: 41 },
+    { n: 17, result: 58 }
   ].forEach(function(cas) {
     it('sumPrime(' + cas.n + ') should equals ' + cas.result, function() {
       expect(Util.sumPrime(cas.n)).toBe(cas.result);
     });
-  });
-  
+  });  
 });

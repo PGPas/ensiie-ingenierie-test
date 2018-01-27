@@ -77,7 +77,15 @@ Util.isPrime = function(n) {
  * @returns {number}
  */
 Util.sumPrime = function(n) {
-
+	if(n !== parseInt(n, 10) || n < 0) throw 'Input n is not natural integer';
+	
+	let res = 0
+	for(let i = 0; i <= n; i++) {
+		if(Util.isPrime(i)) {
+			res += i;
+		}
+	}
+	return res;
 };
 
 /**
