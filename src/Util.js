@@ -53,17 +53,17 @@ Util.combination = function(n, r) {
  * @returns {boolean}
  */
 Util.isPrime = function(n) {
-	/*if(n !== parseInt(n, 10) || n < 0) throw 'Input n is not natural integer';
+	if(n !== parseInt(n, 10) || n < 0) throw 'Input n is not natural integer';
 	if (n <= 1) return false; // Si négatif on throw l'exception plus haut
-	let result = false;
+	let result = true;
 	let racine = Math.sqrt(n);
-	for (let i = 2; i <= racine; i++) {
+	for (var i = 2; i <= racine; i++) {
 		if (n % i == 0) {
 			result = false;
 			break;
 		}
 	}
-	return result;*/
+	return result;
 };
 
 

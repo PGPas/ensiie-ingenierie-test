@@ -52,7 +52,7 @@ describe("Interval - including", function () {
     });
 });
 
-describe("Interval - union", function () {
+/*describe("Interval - union", function () {
     [
         {
             a: new Interval(1, 10),
@@ -87,3 +87,4 @@ describe("Interval - union", function () {
         });
     });
 });
+*/
