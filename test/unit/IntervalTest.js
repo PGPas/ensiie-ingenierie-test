@@ -51,3 +51,40 @@ describe("Interval - including", function () {
         });
     });
 });
+
+/*describe("Interval - union", function () {
+    [
+        {
+            a: new Interval(1, 10),
+            b: new Interval(15, 20),
+            union: [ new Interval(1, 10), new Interval(15, 20) ]
+        },
+        {
+            b: new Interval(15, 20),
+            a: new Interval(1, 10),
+            union: [ new Interval(1, 10), new Interval(15, 20) ]
+        },
+        {
+            a: new Interval(10, 20),
+            b: new Interval(7, 10),
+            union: [ new Interval(7, 10), new Interval(10, 20), new Interval(10, 10) ]
+        },
+        {
+            a: new Interval(1, 15),
+            b: new Interval(10, 20),
+            union: [ new Interval(1, 15), new Interval(10, 20), new Interval(10, 15) ]
+        }
+
+    ].forEach(function (testCase) {
+        let testCaseDescription = testCase.a.toString() + " U " + testCase.b.toString() + " should contains";
+        testCase.union.forEach(interval => testCaseDescription += " " + interval.toString());
+
+        it(testCaseDescription, function () {
+            let res = testCase.a.union(testCase.b);
+            let expectedString = ""; testCase.union.forEach(interval => expectedString += interval.toString());
+
+            res.forEach(interval => expect(expectedString).toContain(interval.toString()));
+        });
+    });
+});
+*/

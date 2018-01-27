@@ -266,3 +266,61 @@ describe("Combinations : ", function() {
   });
 
 });
+
+describe("isPrime : ", function() {
+  // Invalid n input
+  [
+    { n: '3'},
+    { n: 6.33 },
+    { n: -6 }
+  ].forEach(function(cas) {
+    it('n is not natural integer', function() {
+        var toThrow = () => {
+          Util.isPrime(cas.n, cas.r);
+        };
+        expect(toThrow).toThrow('Input n is not natural integer');
+    });
+  });
+
+  // is prime
+  [
+    { n: 2, isPrime: true },
+    { n: 3, isPrime: true },
+    { n: 5, isPrime: true },
+    { n: 7, isPrime: true },
+    { n: 11, isPrime: true },
+    { n: 13, isPrime: true },
+    { n: 17, isPrime: true },
+    { n: 19, isPrime: true },
+    { n: 23, isPrime: true },
+    { n: 29, isPrime: true },
+    { n: 31, isPrime: true },
+    { n: 1697, isPrime: true },
+    { n: 2137, isPrime: true },
+    { n: 7883, isPrime: true },
+    { n: 7919, isPrime: true },
+  ].forEach(function(cas) {
+    it(cas.n + ' must be prime', function() {
+      expect(Util.isPrime(cas.n)).toBe(cas.isPrime);
+    });
+  });
+
+  // is not prime
+  [
+    { n: 0, isPrime: false },
+    { n: 1, isPrime: false },
+    { n: 4, isPrime: false },
+    { n: 6, isPrime: false },
+    { n: 8, isPrime: false },
+    { n: 14, isPrime: false },
+    { n: 18, isPrime: false },
+    { n: 21, isPrime: false },
+    { n: 2100, isPrime: false },
+    { n: 2102, isPrime: false },
+  ].forEach(function(cas) {
+    it(cas.n + ' must not be prime', function() {
+      expect(Util.isPrime(cas.n)).toBe(cas.isPrime);
+    });
+  });
+  
+});
