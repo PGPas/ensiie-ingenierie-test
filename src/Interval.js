@@ -46,7 +46,7 @@ Interval.prototype.union = function (interval) {
  */
 Interval.prototype.intersection = function (interval) {
 	if(!this.overlaps(interval)) return null;
-	return [ new Interval(Math.max(this.start, interval.start), Math.min(this.end, interval.end)) ];
+	return new Interval(Math.max(this.start, interval.start), Math.min(this.end, interval.end));
 };
 
 /**
@@ -55,7 +55,23 @@ Interval.prototype.intersection = function (interval) {
  * @returns {Interval[]}
  */
 Interval.prototype.exclusion = function (interval) {
+	if(!this.overlaps(interval)) throw 'No overlap between two intervals';
+	let ret = [];
+	let union = this.union(interval)[0];
+	let intersection = this.intersection(interval);
 
+	if(union.start == intersection.start && union.end == intersection.end) {
+		return [];
+	} else if (union.start == intersection.start) {
+		ret.push(new Interval(intersection.end + 1, union.end));
+	} else if (union.end == intersection.end) {
+		ret.push(new Interval(union.start, intersection.start - 1));
+	} else {
+		ret.push(new Interval(union.start, intersection.start - 1));
+		ret.push(new Interval(intersection.end + 1, union.end));
+	}
+
+	return ret;
 };
 
 

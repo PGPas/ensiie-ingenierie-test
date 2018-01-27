@@ -161,3 +161,100 @@ describe("Interval - intersection", function () {
         });
     });
 });
+
+describe("Interval - exclusion", function () {
+    // check for overlapping
+    [
+        {
+            a: new Interval(1, 10),
+            b: new Interval(15, 20)
+        },
+        {
+            a: new Interval(15, 20),
+            b: new Interval(1, 14)
+        }
+    ].forEach(function (testCase) {
+        let testCaseDescription = testCase.a.toString() + " \\ " + testCase.b.toString() + " should throw don't overlaps exception";
+
+        it(testCaseDescription, function () {
+            let f = function () { 
+                testCase.a.exclusion(testCase.b);
+            }
+            expect(f).toThrow('No overlap between two intervals');
+        });
+    });
+
+    // Same interval
+    [
+        {
+            a: new Interval(10, 20),
+            b: new Interval(10, 20),
+            exclusion: []
+        },
+        {
+            a: new Interval(15, 30),
+            b: new Interval(15, 30),
+            exclusion: []
+        }
+
+    ].forEach(function (testCase) {
+        let testCaseDescription = testCase.a.toString() + " \\ " + testCase.b.toString() + " should be []";
+        testCase.exclusion.forEach(interval => testCaseDescription += " " + interval.toString());
+
+        it(testCaseDescription, function () {
+            let res = testCase.a.exclusion(testCase.b);
+            expect(res).toEqual([]);
+        });
+    });
+
+    // normal cases
+    [
+        {
+            a: new Interval(10, 20),
+            b: new Interval(20, 21),
+            exclusion: [ new Interval(10, 19), new Interval(21, 21) ]
+        },
+        {
+            a: new Interval(20, 25),
+            b: new Interval(10, 20),
+            exclusion: [ new Interval(10, 19), new Interval(21, 25) ]
+        },
+        {
+            a: new Interval(10, 20),
+            b: new Interval(15, 21),
+            exclusion: [ new Interval(10, 14), new Interval(21, 21) ]
+        },
+        {
+            a: new Interval(13, 23),
+            b: new Interval(10, 20),
+            exclusion: [ new Interval(10, 12), new Interval(21, 23) ]
+        },
+        {
+            a: new Interval(10, 20),
+            b: new Interval(13, 17),
+            exclusion: [ new Interval(10, 12), new Interval(18, 20) ]
+        },
+        {
+            a: new Interval(10, 20),
+            b: new Interval(10, 27),
+            exclusion: [ new Interval(21, 27) ]
+        },
+        {
+            a: new Interval(10, 20),
+            b: new Interval(15, 20),
+            exclusion: [ new Interval(10, 14) ]
+        }
+
+    ].forEach(function (testCase) {
+        let testCaseDescription = testCase.a.toString() + " \\ " + testCase.b.toString() + " should contains";
+        testCase.exclusion.forEach(interval => testCaseDescription += " " + interval.toString());
+
+        it(testCaseDescription, function () {
+            let res = testCase.a.exclusion(testCase.b);
+            let expectedString = ""; 
+            testCase.exclusion.forEach(interval => expectedString += interval.toString());
+
+            res.forEach(interval => expect(expectedString).toContain(interval.toString()));
+        });
+    });
+});
