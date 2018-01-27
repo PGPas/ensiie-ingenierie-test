@@ -354,3 +354,31 @@ describe("sumPrime : ", function() {
     });
   });  
 });
+
+describe("fizzBuzz : ", function() {
+  // Invalid n input
+  [
+    '3',
+    6.33,
+    -6
+  ].forEach(function(cas) {
+    it('n is not natural integer', function() {
+        var toThrow = () => {
+          Util.fizzBuzz(cas);
+        };
+        expect(toThrow).toThrow('Input n is not natural integer');
+    });
+  });
+
+  [
+    { n: 2, result: [1, 2] },
+    { n: 3, result: [1, 2, "Fizz"] },
+    { n: 5, result: [1, 2, "Fizz", 4, "Buzz"] },
+    { n: 13, result: [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz", 11, "Fizz", 13] },
+    { n: 15, result: [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz", 11, "Fizz", 13, 14, "FizzBuzz"] }
+  ].forEach(function(cas) {
+    it('fizzBuzz(' + cas.n + ') should equals ' + cas.result, function() {
+      expect(Util.fizzBuzz(cas.n)).toEqual(cas.result);
+    });
+  });  
+});
