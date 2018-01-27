@@ -13,7 +13,7 @@ Interval.prototype.toString = function () {
  * @returns {boolean}
  */
 Interval.prototype.overlaps = function (interval) {
-    return this.end > interval.start && this.start < interval.end;
+    return this.end >= interval.start && this.start <= interval.end;
 };
 
 
@@ -45,7 +45,8 @@ Interval.prototype.union = function (interval) {
  * @returns {Interval|null}
  */
 Interval.prototype.intersection = function (interval) {
-
+	if(!this.overlaps(interval)) return null;
+	return [ new Interval(Math.max(this.start, interval.start), Math.min(this.end, interval.end)) ];
 };
 
 /**
