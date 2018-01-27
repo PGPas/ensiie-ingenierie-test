@@ -94,3 +94,70 @@ describe("Interval - union", function () {
     });
 });
 
+describe("Interval - intersection", function () {
+    // null cases
+    [
+        {
+            a: new Interval(1, 10),
+            b: new Interval(15, 20)
+        },
+        {
+            b: new Interval(15, 20),
+            a: new Interval(1, 10)
+        }
+    ].forEach(function (testCase) {
+        let testCaseDescription = testCase.a.toString() + " ∩ " + testCase.b.toString() + " should be null";
+
+        it(testCaseDescription, function () {
+            let res = testCase.a.intersection(testCase.b);
+            expect(res).toBe(null);
+        });
+    });
+
+    // normal cases
+    [
+        {
+            a: new Interval(10, 20),
+            b: new Interval(7, 10),
+            intersection: new Interval(10, 10)
+        },
+        {
+            a: new Interval(1, 15),
+            b: new Interval(10, 20),
+            intersection: new Interval(10, 15)
+        },
+        {
+            a: new Interval(10, 20),
+            b: new Interval(20, 21),
+            intersection: new Interval(20, 20)
+        },
+        {
+            a: new Interval(10, 20),
+            b: new Interval(13, 17),
+            intersection: new Interval(13, 17)
+        },
+        {
+            a: new Interval(11, 19),
+            b: new Interval(10, 20),
+            intersection: new Interval(11, 19)
+        },
+        {
+            a: new Interval(11, 20),
+            b: new Interval(10, 20),
+            intersection: new Interval(11, 20)
+        },
+        {
+            a: new Interval(10, 15),
+            b: new Interval(10, 20),
+            intersection: new Interval(10, 15)
+        }
+
+    ].forEach(function (testCase) {
+        let testCaseDescription = testCase.a.toString() + " ∩ " + testCase.b.toString() + " should be " + testCase.intersection.toString();
+
+        it(testCaseDescription, function () {
+            let res = testCase.a.intersection(testCase.b);
+            expect(res.toString()).toBe(testCase.intersection.toString());
+        });
+    });
+});
