@@ -382,3 +382,30 @@ describe("fizzBuzz : ", function() {
     });
   });  
 });
+
+describe("cipher : ", function() {
+  // Invalid input
+  [
+    {},
+    [],
+    6.33
+  ].forEach(function(cas) {
+    it('n is not a string', function() {
+        var toThrow = () => {
+          Util.cipher(cas);
+        };
+        expect(toThrow).toThrow('Input is not a string');
+    });
+  });
+
+  [
+    { input: "Test Unitaire", result: "Uftu Vojubjsf" },
+    { input: "Essai numero deux", result: "Fttbj ovnfsp efvy" },
+    { input: "Aaaa Zzzz", result: "Bbbb Aaaa" },
+    { input: "Test 557azerty", result: "Uftu 557bafsuz" }
+  ].forEach(function(cas) {
+    it('cipher(' + cas.input + ') should equals ' + cas.result, function() {
+      expect(Util.cipher(cas.input)).toBe(cas.result);
+    });
+  });  
+});

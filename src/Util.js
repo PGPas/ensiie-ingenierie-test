@@ -127,5 +127,29 @@ Util.fizzBuzz = function(n) {
  * @returns {string}
  */
 Util.cipher = function (phrase) {
+	if (typeof phrase != 'string') throw 'Input is not a string';
+	let res = "";
+	if(phrase.length > 0) {
+		let lowerRgx = /[a-z]/;
+		let upperRgx = /[A-Z]/;
 
+		let nextLetterInAlphabet = function(letter) {
+			letter = letter.toLowerCase();
+			let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+			let focusedIndex = alphabet.indexOf(letter) + 1;
+			return alphabet[focusedIndex] || 'a'; // Gestion du cas de la lettre z.
+		}
+
+		for (let i = 0; i < phrase.length; i++) {
+			let c = phrase.charAt(i);
+			if (lowerRgx.test(c)) {
+				res += nextLetterInAlphabet(c).toLowerCase();
+			} else if (upperRgx.test(c)) {
+				res += nextLetterInAlphabet(c).toUpperCase();
+			} else {
+				res += c;
+			}
+		}
+	}
+	return res;
 };
