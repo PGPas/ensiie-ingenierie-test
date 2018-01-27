@@ -86,7 +86,6 @@ describe("Interval - union", function () {
 
         it(testCaseDescription, function () {
             let res = testCase.a.union(testCase.b);
-            console.log(res);
             let expectedString = ""; 
             testCase.union.forEach(interval => expectedString += interval.toString());
 
