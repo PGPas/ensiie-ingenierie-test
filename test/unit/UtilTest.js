@@ -276,7 +276,7 @@ describe("isPrime : ", function() {
   ].forEach(function(cas) {
     it('n is not natural integer', function() {
         var toThrow = () => {
-          Util.isPrime(cas.n, cas.r);
+          Util.isPrime(cas.n);
         };
         expect(toThrow).toThrow('Input n is not natural integer');
     });
@@ -320,6 +320,37 @@ describe("isPrime : ", function() {
   ].forEach(function(cas) {
     it(cas.n + ' must not be prime', function() {
       expect(Util.isPrime(cas.n)).toBe(cas.isPrime);
+    });
+  });
+  
+});
+
+describe("sumPrime : ", function() {
+  // Invalid n input
+  [
+    { n: '3'},
+    { n: 6.33 },
+    { n: -6 }
+  ].forEach(function(cas) {
+    it('n is not natural integer', function() {
+        var toThrow = () => {
+          Util.sumPrime(cas.n);
+        };
+        expect(toThrow).toThrow('Input n is not natural integer');
+    });
+  });
+
+  [
+    { n: 2, result: 2 },
+    { n: 3, result: 5 },
+    { n: 6, result: 10 },
+    { n: 8, result: 17 },
+    { n: 11, result: 28 },
+    { n: 13, result: 31 },
+    { n: 17, result: 48 }
+  ].forEach(function(cas) {
+    it('sumPrime(' + cas.n + ') should equals ' + cas.result, function() {
+      expect(Util.sumPrime(cas.n)).toBe(cas.result);
     });
   });
   
